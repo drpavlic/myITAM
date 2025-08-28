@@ -2,6 +2,7 @@ from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List
+import os
 
 from . import models, schemas, crud
 from .database import SessionLocal, engine
@@ -10,10 +11,12 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Infrastructure Systems Manager", version="1.0.0")
 
-# CORS middleware
+# CORS configuration
+origins = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://localhost:80").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

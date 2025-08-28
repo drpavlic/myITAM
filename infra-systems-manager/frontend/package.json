@@ -1,5 +1,5 @@
 {
-  "name": "infra-frontend",
+  "name": "myitam-frontend",
   "version": "1.0.0",
   "dependencies": {
     "@mui/material": "^5.14.0",

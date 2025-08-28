@@ -2,7 +2,9 @@ FROM node:18-alpine as build
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+# Сначала копируем только package.json и package-lock.json
+COPY package*.json ./
+
 RUN npm install
 
 COPY . .
